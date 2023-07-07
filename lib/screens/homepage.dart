@@ -35,28 +35,31 @@ class HomePage extends StatelessWidget {
                   height: 20,
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: productData.products.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              productData.products[index].title,
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Image(
-                                height: 200,
-                                image: NetworkImage(
-                                    productData.products[index].image))
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                    child: GridView.builder(
+                  itemCount: productData.products.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 8,
+                      mainAxisExtent: 300,
+                      mainAxisSpacing: 8,
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white60),
+                      child: Column(children: [
+                        Image(
+                            height: 150,
+                            image: NetworkImage(
+                                productData.products[index].image)),
+                        Text(productData.products[index].title),
+                        Text(
+                          productData.products[index].price,
+                        )
+                      ]),
+                    );
+                  },
+                )),
               ],
             ),
           );

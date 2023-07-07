@@ -12,22 +12,25 @@ import 'package:online_store/screens/searchpage.dart';
 import 'package:online_store/utils/constants.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  // const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            leading: Icon(Icons.more_vert_outlined),
+            leading: Icon(
+              Icons.more_vert_outlined,
+            ),
             title: Center(
               child: Text(
                 'Online Store',
-                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
             actions: [
-              Icon(Icons.favorite_border),
+              Icon(
+                Icons.favorite_border,
+              ),
               SizedBox(
                 width: 20,
               )
@@ -41,28 +44,50 @@ class HomePage extends StatelessWidget {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 14,
                     ),
-                    Container(
-                      height: 50,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-                      // margin: EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey)),
-                      child: TextField(
-                        onTap: () {
-                          Get.to(SearchPage());
-                        },
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Search items'),
-                      ),
+                    Text(
+                      'Find your goods here',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
+                          color: kGreyColor),
                     ),
                     SizedBox(
                       height: 20,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.to(SearchPage());
+                      },
+                      child: Container(
+                          height: 45,
+                          width: double.infinity,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: Color.fromARGB(255, 230, 230, 230)
+                              // border: Border.all(color: Colors.grey)
+                              ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.search),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Search items',
+                                style: TextStyle(color: kGreyColor),
+                              )
+                            ],
+                          )),
+                    ),
+                    SizedBox(
+                      height: 30,
                     ),
                     Expanded(
                         child: GridView.builder(
@@ -81,7 +106,7 @@ class HomePage extends StatelessWidget {
                           child: Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(20),
                                 color: kCardBgColor),
                             child: Column(children: [
                               ClipRRect(
@@ -100,14 +125,16 @@ class HomePage extends StatelessWidget {
                                   Text(productData.products[index].title,
                                       maxLines: 2,
                                       style: TextStyle(
+                                          fontSize: 16,
+                                          color: kGreyColor,
                                           fontWeight: FontWeight.bold)),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Text('\$' + productData.products[index].price,
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.teal))
+                                        fontWeight: FontWeight.bold,
+                                      ))
                                 ],
                               ),
                             ]),

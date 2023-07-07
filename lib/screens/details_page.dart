@@ -39,15 +39,54 @@ class DetailsPage extends StatelessWidget {
                     productDetails.title,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
-                  Text(
-                    '\$' + productDetails.price,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500, color: kPrimaryColor),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(CupertinoIcons.minus),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            '1',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(Icons.add)
+                        ],
+                      ),
+                      Text(
+                        '\$' + productDetails.price,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: kPrimaryColor,
+                            fontSize: 20),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(productDetails.description),
+                  Text(
+                    'About this product',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    productDetails.description,
+                    style: TextStyle(
+                      color: kGreyColor,
+                    ),
+                  ),
                 ],
               )),
         ),

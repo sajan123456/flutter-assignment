@@ -13,13 +13,44 @@ class HomePage extends StatelessWidget {
       child: Scaffold(body: Consumer(
         builder: (context, ref, child) {
           final productData = ref.watch(productProvider);
-          return ListView.builder(
-            itemCount: productData.products.length,
-            itemBuilder: (context, index) {
-              return Container(
-                child: Text(productData.products[index].title),
-              );
-            },
+          return Container(
+            child: Column(
+              children: [
+                Text(
+                  'Welcome to Online Store',
+                  style: TextStyle(fontSize: 30),
+                ),
+                TextField(
+                  decoration: InputDecoration(hintText: 'Search items'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: productData.products.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              productData.products[index].title,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            Image(
+                                height: 200,
+                                image: NetworkImage(
+                                    productData.products[index].image))
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           );
         },
       )),

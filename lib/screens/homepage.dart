@@ -61,7 +61,9 @@ class HomePage extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(SearchPage());
+                        Get.to(SearchPage(
+                          products: productData.products,
+                        ));
                       },
                       child: Container(
                           height: 45,

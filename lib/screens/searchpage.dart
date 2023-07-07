@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:online_store/screens/details_page.dart';
 
 import '../models/products.dart';
 import '../utils/constants.dart';
@@ -17,6 +18,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   List<Products> displayList = [];
+  int productIndex = 0;
 
   void updateList(String value) {
     print('updatelist');
@@ -24,13 +26,13 @@ class _SearchPageState extends State<SearchPage> {
       widget.products.forEach((element) {
         if (element.title.toLowerCase().contains(value)) {
           displayList.clear();
+
           if (!displayList.contains(element)) {
+            productIndex = element.id;
             displayList.add(element);
           } else {
             print('no date');
           }
-        } else {
-          // displayList.clear();
         }
       });
     });
@@ -74,40 +76,46 @@ class _SearchPageState extends State<SearchPage> {
                 child: ListView.builder(
               itemCount: displayList.length,
               itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: kCardBgColor),
-                  child: Column(children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image(
-                          height: 120,
-                          image: NetworkImage(displayList[index].image)),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(displayList[index].title,
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: kGreyColor,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text('\$' + displayList[index].price,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ))
-                      ],
-                    ),
-                  ]),
+                return InkWell(
+                  onTap: () {
+                    Get.to(DetailsPage(
+                        productDetails: widget.products[productIndex]));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: kCardBgColor),
+                    child: Column(children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image(
+                            height: 120,
+                            image: NetworkImage(displayList[index].image)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(displayList[index].title,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: kGreyColor,
+                                  fontWeight: FontWeight.bold)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text('\$' + displayList[index].price,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ))
+                        ],
+                      ),
+                    ]),
+                  ),
                 );
                 // child: Text('data'),
               },

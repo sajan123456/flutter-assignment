@@ -17,9 +17,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Online Store',
       home: HomePage(),
-      theme: ThemeData(
-          textTheme: TextTheme(labelLarge: TextStyle())
-              .apply(bodyColor: Colors.blue, displayColor: Colors.blue)),
     );
   }
 }

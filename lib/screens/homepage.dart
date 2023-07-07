@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
         builder: (context, ref, child) {
           final productData = ref.watch(productProvider);
           return Container(
+            padding: EdgeInsets.all(14),
             child: Column(
               children: [
                 Text(
@@ -38,24 +39,42 @@ class HomePage extends StatelessWidget {
                     child: GridView.builder(
                   itemCount: productData.products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 8,
-                      mainAxisExtent: 300,
-                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 12,
+                      mainAxisExtent: 280,
+                      mainAxisSpacing: 12,
                       crossAxisCount: 2),
                   itemBuilder: (context, index) {
                     return Container(
+                      padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: Colors.white60),
+                          color: Color.fromARGB(153, 240, 240, 240)),
                       child: Column(children: [
-                        Image(
-                            height: 150,
-                            image: NetworkImage(
-                                productData.products[index].image)),
-                        Text(productData.products[index].title),
-                        Text(
-                          productData.products[index].price,
-                        )
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image(
+                              height: 150,
+                              image: NetworkImage(
+                                  productData.products[index].image)),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(productData.products[index].title,
+                                maxLines: 2,
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text('\$' + productData.products[index].price,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.lightGreen))
+                          ],
+                        ),
                       ]),
                     );
                   },

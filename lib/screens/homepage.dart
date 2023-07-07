@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:online_store/provider/product_provider.dart';
+import 'package:online_store/screens/searchpage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,8 +22,14 @@ class HomePage extends StatelessWidget {
                   'Welcome to Online Store',
                   style: TextStyle(fontSize: 30),
                 ),
-                TextField(
-                  decoration: InputDecoration(hintText: 'Search items'),
+                Container(
+                  color: Color.fromARGB(255, 173, 173, 173),
+                  child: TextField(
+                    onTap: () {
+                      Get.to(SearchPage());
+                    },
+                    decoration: InputDecoration(hintText: 'Search items'),
+                  ),
                 ),
                 SizedBox(
                   height: 20,

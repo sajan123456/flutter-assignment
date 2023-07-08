@@ -79,7 +79,7 @@ class _SearchPageState extends State<SearchPage> {
                 return InkWell(
                   onTap: () {
                     Get.to(DetailsPage(
-                        productDetails: widget.products[productIndex]));
+                        productDetails: widget.products[productIndex - 1]));
                   },
                   child: Container(
                     padding: EdgeInsets.all(10),
